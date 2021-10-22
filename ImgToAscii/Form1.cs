@@ -27,17 +27,33 @@ namespace ImgToAscii
             var converter = new BitmapToAsciiConverter(bitmap);
 
             var rows = CheckInvertColor(converter);
-
-            progressBar1.Maximum = rows.GetLength(0);
+            
+            ThreadSafeInvoke(() =>
+            {
+                progressBar1.Maximum = rows.GetLength(0);
+            });
+            
             foreach (var row in rows)
             {
-                richTextBox1.Text += new string(row) + Environment.NewLine;
-                progressBar1.Value++;
+                ThreadSafeInvoke(() =>
+                {
+                    richTextBox1.Text += new string(row) + Environment.NewLine;
+                });
+                ThreadSafeInvoke(() =>
+                {
+                    progressBar1.Value++;
+                });
             }
             if (progressBar1.Value == rows.GetLength(0))
             {
-                progressBar1.Value = 0;
-                label5Complete.Text = "Complete!";
+                ThreadSafeInvoke(() =>
+                {
+                    progressBar1.Value = 0;
+                });
+                ThreadSafeInvoke(() =>
+                {
+                    label5Complete.Text = "Complete!";
+                });
             }
         }
 
@@ -66,15 +82,24 @@ namespace ImgToAscii
 
             await Task.Run(() =>
             {
-                //Invoke(new Action(() => { ImagePreprocessing(_bitmap); }));
-
                 ImagePreprocessing(_bitmap);
             });
+
             saveToolStripMenuItem.Enabled = true;
             buttonConvert.Enabled = true;
             progressBar1.Visible = false;
         }
-
+        public void ThreadSafeInvoke(Action action)
+        {
+            try
+            {
+                if (!InvokeRequired)
+                    action();// Execute action.
+                else
+                    Invoke(action, new object[0]);
+            }
+            catch { }
+        }
         private static Bitmap ResizeBitmap(Bitmap bitmap)
         {
             var newHeight = bitmap.Height / _widthOffset * _quality / bitmap.Width;
