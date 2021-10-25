@@ -29,6 +29,11 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.checkBoxInvert = new System.Windows.Forms.CheckBox();
+            this.label5Complete = new System.Windows.Forms.Label();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.label4 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.buttonConvert = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -43,19 +48,14 @@
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.label5Complete = new System.Windows.Forms.Label();
-            this.checkBoxInvert = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQuality)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWidthOffset)).BeginInit();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -87,6 +87,52 @@
             this.splitContainer1.Size = new System.Drawing.Size(800, 537);
             this.splitContainer1.SplitterDistance = 161;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // checkBoxInvert
+            // 
+            this.checkBoxInvert.AutoSize = true;
+            this.checkBoxInvert.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.checkBoxInvert.Location = new System.Drawing.Point(9, 89);
+            this.checkBoxInvert.Name = "checkBoxInvert";
+            this.checkBoxInvert.Size = new System.Drawing.Size(91, 17);
+            this.checkBoxInvert.TabIndex = 10;
+            this.checkBoxInvert.Text = "Invert color    ";
+            this.checkBoxInvert.UseVisualStyleBackColor = true;
+            // 
+            // label5Complete
+            // 
+            this.label5Complete.AutoSize = true;
+            this.label5Complete.BackColor = System.Drawing.SystemColors.Control;
+            this.label5Complete.Location = new System.Drawing.Point(53, 180);
+            this.label5Complete.Name = "label5Complete";
+            this.label5Complete.Size = new System.Drawing.Size(0, 13);
+            this.label5Complete.TabIndex = 9;
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(26, 175);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(106, 23);
+            this.progressBar1.Step = 1;
+            this.progressBar1.TabIndex = 8;
+            this.progressBar1.Visible = false;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(39, 219);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(0, 13);
+            this.label4.TabIndex = 7;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(16, 235);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(130, 130);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 6;
+            this.pictureBox1.TabStop = false;
             // 
             // buttonConvert
             // 
@@ -148,12 +194,12 @@
             65536});
             this.numericUpDownWidthOffset.Location = new System.Drawing.Point(85, 37);
             this.numericUpDownWidthOffset.Maximum = new decimal(new int[] {
-            25,
+            40,
             0,
             0,
             65536});
             this.numericUpDownWidthOffset.Minimum = new decimal(new int[] {
-            9,
+            1,
             0,
             0,
             65536});
@@ -161,7 +207,7 @@
             this.numericUpDownWidthOffset.Size = new System.Drawing.Size(65, 20);
             this.numericUpDownWidthOffset.TabIndex = 2;
             this.numericUpDownWidthOffset.Value = new decimal(new int[] {
-            17,
+            20,
             0,
             0,
             65536});
@@ -177,6 +223,7 @@
             // 
             // richTextBox1
             // 
+            this.richTextBox1.DetectUrls = false;
             this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBox1.Font = new System.Drawing.Font("Consolas", 2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.richTextBox1.Location = new System.Drawing.Point(0, 0);
@@ -218,7 +265,7 @@
             // 
             this.saveToolStripMenuItem.Enabled = false;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.saveToolStripMenuItem.Text = "Save to text";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
@@ -236,52 +283,6 @@
             // 
             this.saveFileDialog1.Filter = "Text |*.txt";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(16, 235);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(130, 130);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 6;
-            this.pictureBox1.TabStop = false;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(39, 219);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(0, 13);
-            this.label4.TabIndex = 7;
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(26, 175);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(106, 23);
-            this.progressBar1.Step = 1;
-            this.progressBar1.TabIndex = 8;
-            this.progressBar1.Visible = false;
-            // 
-            // label5Complete
-            // 
-            this.label5Complete.AutoSize = true;
-            this.label5Complete.BackColor = System.Drawing.SystemColors.Control;
-            this.label5Complete.Location = new System.Drawing.Point(53, 180);
-            this.label5Complete.Name = "label5Complete";
-            this.label5Complete.Size = new System.Drawing.Size(0, 13);
-            this.label5Complete.TabIndex = 9;
-            // 
-            // checkBoxInvert
-            // 
-            this.checkBoxInvert.AutoSize = true;
-            this.checkBoxInvert.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkBoxInvert.Location = new System.Drawing.Point(9, 89);
-            this.checkBoxInvert.Name = "checkBoxInvert";
-            this.checkBoxInvert.Size = new System.Drawing.Size(91, 17);
-            this.checkBoxInvert.TabIndex = 10;
-            this.checkBoxInvert.Text = "Invert color    ";
-            this.checkBoxInvert.UseVisualStyleBackColor = true;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -298,11 +299,11 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQuality)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWidthOffset)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

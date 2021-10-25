@@ -32,29 +32,40 @@ namespace ImgToAscii
             {
                 progressBar1.Maximum = rows.GetLength(0);
             });
-            
-            foreach (var row in rows)
+            for (int i = 0; i < rows.GetLength(0); i++)
             {
                 ThreadSafeInvoke(() =>
                 {
-                    richTextBox1.Text += new string(row) + Environment.NewLine;
+                    richTextBox1.Text += new string(rows[i]) + Environment.NewLine;
                 });
                 ThreadSafeInvoke(() =>
                 {
-                    progressBar1.Value++;
+                    UpdateProgressBar(i);
                 });
             }
-            if (progressBar1.Value == rows.GetLength(0))
+            if (progressBar1.Value == rows.GetLength(0)-1)
             {
                 ThreadSafeInvoke(() =>
                 {
                     progressBar1.Value = 0;
-                });
-                ThreadSafeInvoke(() =>
-                {
                     label5Complete.Text = "Complete!";
                 });
             }
+        }
+
+        private void UpdateProgressBar(int i)
+        {
+            if (i == progressBar1.Maximum)
+            {
+                progressBar1.Maximum = i + 1;
+                progressBar1.Value = i + 1;
+                progressBar1.Maximum = i;
+            }
+            else
+            {
+                progressBar1.Value = i + 1;
+            }
+            progressBar1.Value = i;
         }
 
         private char[][] CheckInvertColor(BitmapToAsciiConverter converter)
