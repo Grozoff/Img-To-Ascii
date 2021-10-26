@@ -27,7 +27,7 @@ namespace ImgToAscii
             var converter = new BitmapToAsciiConverter(bitmap);
 
             var rows = CheckInvertColor(converter);
-            
+
             ThreadSafeInvoke(() =>
             {
                 progressBar1.Maximum = rows.GetLength(0);
@@ -43,7 +43,7 @@ namespace ImgToAscii
                     UpdateProgressBar(i);
                 });
             }
-            if (progressBar1.Value == rows.GetLength(0)-1)
+            if (progressBar1.Value == rows.GetLength(0) - 1)
             {
                 ThreadSafeInvoke(() =>
                 {
@@ -70,10 +70,27 @@ namespace ImgToAscii
 
         private char[][] CheckInvertColor(BitmapToAsciiConverter converter)
         {
+
             if (checkBoxInvert.Checked)
+            {
+                ThreadSafeInvoke(() =>
+                { 
+                    richTextBox1.BackColor = Color.Black; 
+                    richTextBox1.ForeColor = Color.White;
+                });
+
                 return converter.Convert();
+            }
             else
+            {
+                ThreadSafeInvoke(() =>
+                { 
+                    richTextBox1.BackColor = Color.White;
+                    richTextBox1.ForeColor = Color.Black;
+                });
                 return converter.ConvertInvert();
+            }
+
         }
 
         private async void StartConvert()
@@ -146,7 +163,7 @@ namespace ImgToAscii
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             saveFileDialog1.FileName = _filename;
-            
+
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 var fileName = saveFileDialog1.FileName;
