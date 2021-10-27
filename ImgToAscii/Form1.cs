@@ -90,7 +90,6 @@ namespace ImgToAscii
                 });
                 return converter.ConvertInvert();
             }
-
         }
 
         private async void StartConvert()

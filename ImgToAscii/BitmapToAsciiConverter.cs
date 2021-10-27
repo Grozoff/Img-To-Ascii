@@ -6,7 +6,7 @@ namespace ImgToAscii
     public class BitmapToAsciiConverter
     {
         private readonly Bitmap _bitmap;
-        private readonly char[] _asciiTable = { '.', ',', ':', '=', '*', '?', '%', 'S', '#', '@' };
+        private readonly char[] _asciiTable = { '.', ',', ':', '~', '=', '*', '?', '%', 'S', '#', '@' };
         public BitmapToAsciiConverter(Bitmap bitmap)
         {
             _bitmap = bitmap;
